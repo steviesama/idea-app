@@ -6,13 +6,13 @@
         session_destroy();        
     }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang='en-US'>
 <head>
-	<title>Trend Logger (Login)</title>
+	<title>Idea (Login)</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    <meta name="description" content="Trend Logger login page">
+    <meta name="description" content="Idea login page">
 	<link href="style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="dom-help.js"></script>    
@@ -26,7 +26,6 @@
 
     require_once('includes/inc_connect.php');
     require_once('includes/inc_utilities.php');
-    require_once('includes/inc_trend_utilities.php');
 
 ?>
 
@@ -36,9 +35,9 @@
             
         <div class="content">
 
-            <?php createButtonLink('Home', 'home-button', 'http://trend.6dnx.com', 'green-button'); ?>
+            <?php createButtonLink('Home', 'home-button', 'http://idea.6dnx.com', 'green-button'); ?>
 
-            <h1>Trend Logger - (Login)</h1>
+            <h1>Idea - (Login)</h1>
 
             <?php
             $username = '';
@@ -52,7 +51,7 @@
             {
                 $username = strip($_POST['username']);
                 $password = strip($_POST['password']);
-                $dbName = 'trend';
+                $dbName = 'idea';
                 $table = 'tblUser';
                 $whereClause = "WHERE user_name='{$username}' AND user_password='{$password}' AND user_confirmed=1";                
                 if(getRecordCountWhere($table, $dbName, null, $whereClause) == 1)
@@ -64,7 +63,7 @@
                         $_SESSION[$key] = $column;
                     ?>
                     <h4>Login Successful!</h4>
-                    <p>Please click <?php createButtonLink('here', 'here-button', '/', 'green-button'); ?>to enter Trend Logger.</p>
+                    <p>Please click <?php createButtonLink('here', 'here-button', '/', 'green-button'); ?>to enter Idea.</p>
                     <?php
                 }
                 else
@@ -100,11 +99,11 @@
                 </form>                
                 <?php
                 if($usernameMsg == 'account not confirmed') {
-                    $record = getRecordsWhere('tblUser', 'trend', null, "WHERE user_name='{$username}'")[0];
-                    $msg = "<p>Please click the following link to verify and enable your Trend Logger account.</p>\n";
-                    $link = "http://trend.6dnx.com/register.php?action=VERIFY&user-id={$record['user_id']}&user-email={$record['user_email']}";
+                    $record = getRecordsWhere('tblUser', 'idea', null, "WHERE user_name='{$username}'")[0];
+                    $msg = "<p>Please click the following link to verify and enable your Idea account.</p>\n";
+                    $link = "http://idea.6dnx.com/register.php?action=VERIFY&user-id={$record['user_id']}&user-email={$record['user_email']}";
                     $msg .= "<a href='{$link}'>{$link}</a>\n";                  
-                    sendEmail('trendlogger.6dnx@gmail.com', $record['user_email'], 'Trend Logger E-Mail Verification Link', $msg);
+                    sendEmail('idea.6dnx@gmail.com', $record['user_email'], 'Idea E-Mail Verification Link', $msg);
                     echo "<h4>Another verification link has been sent to the email address you registered with!</h4>\n";
                 }
             } else if(isset($_GET['action']) && $_GET['action'] == 'LOG_OUT') {
@@ -112,7 +111,7 @@
                 <h4>Logout Successful!</h4>
                 <p>
                     <?php
-                    createButtonLink('Trend Logger', 'trend-logger-button', '/', 'green-button');
+                    createButtonLink('Idea', 'idea-button', '/', 'green-button');
                     createButtonLink('Login', 'login-button', 'login.php', 'green-button');1
                     ?>
                 </p>
@@ -123,7 +122,7 @@
             
             <footer>
                 <span>
-                    Trend Logger, Copyright <?php echo @date(Y); ?> &copy; C.S. Taylor, Jr.&nbsp;<br>
+                    Idea, Copyright <?php echo @date(Y); ?> &copy; C.S. Taylor, Jr.&nbsp;<br>
                     <?php 
                     createButtonLink('steviesama@gmail.com', 'email-button', 
                                      'mailto:steviesama@gmail.com', 'red-button', true);

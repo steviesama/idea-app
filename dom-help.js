@@ -1,3 +1,8 @@
+//--- globals
+//default to no touch
+var canTouch = false;
+var touchDelay = 2;
+
 function createXMLHttpRequest()
 {
 	//holds new XMLHttpRequest object of the appropriate type

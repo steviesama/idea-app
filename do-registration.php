@@ -3,7 +3,7 @@
 	
 	require_once('includes/inc_utilities.php');
 
-	$dbName = 'trend';
+	$dbName = 'idea';
 	$table = 'tblUser';
 
 	$dbConnection = null;
@@ -79,10 +79,10 @@
 				{
 					$response['registered'] = true;
 					$response['user-id'] = getLastInsertId($table, $dbConnection);
-					$msg = "<p>Please click the following link to verify and enable your Trend Logger account.</p>\n";
-					$link = "http://trend.6dnx.com/register.php?action=VERIFY&user-id={$response['user-id']}&user-email={$_GET['email']}";
+					$msg = "<p>Please click the following link to verify and enable your Idea account.</p>\n";
+					$link = "http://idea.6dnx.com/register.php?action=VERIFY&user-id={$response['user-id']}&user-email={$_GET['email']}";
 					$msg .= "<a href='{$link}'>{$link}</a>\n";					
-					sendEmail('wordspace.6dnx@gmail.com', $_GET['email'], 'Trend Logger E-Mail Verification Link', $msg);
+					sendEmail('idea.6dnx@gmail.com', $_GET['email'], 'Idea E-Mail Verification Link', $msg);
 				}
 				//respond that data is good
 				else $response['registered'] = true;

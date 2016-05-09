@@ -7,9 +7,9 @@
     }
 ?>
 <!doctype html>
-<html lang='en'>
+<html lang='en-US'>
 <head>
-	<title>Trend Logger Home Page</title>
+	<title>Idea Home Page</title>
 	<meta charset='utf-8'>
 	<link rel='stylesheet' href='style.css' type='text/css' media='all'>
 	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
@@ -18,15 +18,8 @@
     <script type='text/javascript' src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script type='text/javascript' src='jquery.plugins.js'></script>
     <script type='text/javascript' src='dom-help.js'></script>
-    <script type='text/javascript' src='behavior.js'></script>
     <script type="text/javascript" src='js/utilities.js'></script>
-    <script type='text/javascript' src='trend.js'></script>
     <script type='text/javascript' src='js/html.js'></script>
-    <script type="text/javascript" src='js/raphael-min.js'></script>
-    <script type="text/javascript" src='js/raphael-utilities.js'></script>
-    <script type="text/javascript" src='js/class.trendData.js'></script>
-    <script type="text/javascript" src='js/class.trendEvents.js'></script>
-    <script type="text/javascript" src='js/class.eventGraph.js'></script>
     <script type="text/javascript">
    		var globals = new function() {
    			this.hourHeight = 15;
@@ -37,11 +30,7 @@
    		}
 
     	$(function() {
-    		$('.data-picker').datepicker();
-    		$(document).tooltip();
-    		//RaphaelJS setup
-    		eventGraph.init('paper', globals.paperWidth, globals.paperHeight);
-    		$('#paper').hide();
+    		globalHandlers();
     	});
     </script>
 </head>
@@ -50,7 +39,6 @@
 
     require_once('includes/inc_connect.php');
     require_once('includes/inc_utilities.php');
-    require_once('includes/inc_trend_utilities.php');
 
 ?>
 
@@ -58,26 +46,22 @@
 	<div class="content">
 		<?php
 			if(empty($_SESSION['user_id'])) {
-				createButtonLink('Login', 'login-button', 'http://trend.6dnx.com/login.php', 'green-button');
-				createButtonLink('Register', 'register-button', 'http://trend.6dnx.com/register.php', 'red-button');
-			}
-            else {            
+				createButtonLink('Login', 'login-button', 'http://idea.6dnx.com/login.php', 'green-button');
+				createButtonLink('Register', 'register-button', 'http://idea.6dnx.com/register.php', 'red-button');
+			} else {            
                 echo "{$_SESSION['user_firstname']} {$_SESSION['user_lastname']} ({$_SESSION['user_email']})";
                	echo createButton('Logout', 'log-out-button', 
-               		'window.location.href="http://trend.6dnx.com/login.php?action=LOG_OUT"', 'red-button');
+               		'window.location.href="http://idea.6dnx.com/login.php?action=LOG_OUT"', 'red-button');
             }
 		?>
 
-		<h1>Trend Logger</h1>
+		<h1>Idea</h1>
 
 		<?php
 			
-			if(isset($_SESSION['user_id']))
-		    {
-		    	require_once('includes/inc_trend_logger.php');
-		    }
-		    else
-		    {
+			if(isset($_SESSION['user_id'])) {
+		    	require_once('includes/inc_idea.php');
+		    } else {
 		        ?>
 		        <h4>Application Description</h4>
 				<p>
@@ -105,7 +89,7 @@
         ?>
 	    <footer>
         	<span>
-        		Trend Logger, Copyright <?php echo @date(Y); ?> &copy; C.S. Taylor, Jr.&nbsp;<br>
+        		Idea, Copyright <?php echo @date(Y); ?> &copy; C.S. Taylor, Jr.&nbsp;<br>
         		<?php 
         		createButtonLink('steviesama@gmail.com', 'email-button', 
         						 'mailto:steviesama@gmail.com', 'red-button', true);

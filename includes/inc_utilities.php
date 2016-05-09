@@ -460,10 +460,10 @@
 
     require_once('includes/PHPMailerAutoload.php');
     require_once('includes/class.phpmailer.php');
-    require_once('includes/inc_wordspace_password.php');
+    // require_once('includes/inc_wordspace_password.php');
 
     function sendEmail($from, $to, $subject, $message)     {
-        global $wordspaceGmailPassword;
+        // global $wordspaceGmailPassword;
 
         $mail = new PHPMailer(); // create a new object
         // $mail->SMTPDebug = 2;
@@ -473,7 +473,7 @@
         $mail->Host = "smtp.gmail.com";
         $mail->Port = 465; // or 587
         $mail->IsHTML(true);
-        $mail->Username = "trendlogger.6dnx@gmail.com";
+        $mail->Username = "idea.6dnx@gmail.com";
         $mail->Password = '20ryan10';
         $mail->SetFrom($from);
         $mail->Subject = $subject;

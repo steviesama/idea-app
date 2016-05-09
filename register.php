@@ -2,6 +2,7 @@
     session_start();
 ?>
 <!DOCTYPE html>
+<html lang='en-US'>
 <head>
 	<title>Idea</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -17,7 +18,6 @@
     <script type='text/javascript' src='dom-help.js'></script>
     <script type='text/javascript' src='js/html.js'></script>
     <script type="text/javascript" src='js/utilities.js'></script>
-    <script type='text/javascript' src='behavior.js'></script>
     <script type='text/javascript' src='register.js'></script>
     <script type='text/javascript'>
         //touch event hack
@@ -45,7 +45,6 @@
 
 <?php
     require_once('includes/inc_utilities.php');    
-    require_once('includes/inc_trend_utilities.php');
 ?>
 
 <body>            
@@ -73,18 +72,18 @@
         if($tokensGood === true)
         {
             if(empty($_SESSION['user_id'])) {
-                createButtonLink('Login', 'login-button', 'http://trend.6dnx.com/login.php', 'green-button');
-                createButtonLink('Register', 'register-button', 'http://trend.6dnx.com/register.php', 'red-button');
+                createButtonLink('Login', 'login-button', 'http://idea.6dnx.com/login.php', 'green-button');
+                createButtonLink('Register', 'register-button', 'http://idea.6dnx.com/register.php', 'red-button');
             }
             else {            
                 echo "{$_SESSION['user_firstname']} {$_SESSION['user_lastname']} ({$_SESSION['user_email']})";
                 echo createButton('Logout', 'log-out-button', 
-                    'window.location.href="http://trend.6dnx.com/login.php?action=LOG_OUT"', 'red-button');
+                    'window.location.href="http://idea.6dnx.com/login.php?action=LOG_OUT"', 'red-button');
             }
             ?>
-            <h1>Trend Logger - (Registration Verification)</h1>
+            <h1>Idea - (Registration Verification)</h1>
             <?php
-            $dbName = 'trend';
+            $dbName = 'idea';
             $table = 'tblUser';
             $dbConnection = null;
             dbConnect($dbConnection);
@@ -126,16 +125,16 @@
                 $cols = 47;
         }
         if(empty($_SESSION['user_id'])) {
-            createButtonLink('Login', 'login-button', 'http://trend.6dnx.com/login.php', 'green-button');
-            createButtonLink('Register', 'register-button', 'http://trend.6dnx.com/register.php', 'red-button');
+            createButtonLink('Login', 'login-button', 'http://idea.6dnx.com/login.php', 'green-button');
+            createButtonLink('Register', 'register-button', 'http://idea.6dnx.com/register.php', 'red-button');
         }
         else {            
             echo "{$_SESSION['user_firstname']} {$_SESSION['user_lastname']} ({$_SESSION['user_email']})";
             echo createButton('Logout', 'log-out-button', 
-                'window.location.href="http://trend.6dnx.com/login.php?action=LOG_OUT"', 'red-button');
+                'window.location.href="http://idea.6dnx.com/login.php?action=LOG_OUT"', 'red-button');
         }
         ?>
-        <h1>Trend Logger - (Register)</h1>
+        <h1>Idea - (Register)</h1>
 
         <h4>Don&apos;t use spaces or non-printable characters</h4>
 
@@ -178,7 +177,7 @@
     ?>    
     <footer>
         <span>
-            Trend Logger, Copyright <?php echo @date(Y); ?> &copy; C.S. Taylor, Jr.&nbsp;<br>
+            Idea, Copyright <?php echo @date(Y); ?> &copy; C.S. Taylor, Jr.&nbsp;<br>
             <?php 
             createButtonLink('steviesama@gmail.com', 'email-button', 
                              'mailto:steviesama@gmail.com', 'red-button', true);
