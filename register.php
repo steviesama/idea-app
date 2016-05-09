@@ -18,6 +18,7 @@
     <script type='text/javascript' src='dom-help.js'></script>
     <script type='text/javascript' src='js/html.js'></script>
     <script type="text/javascript" src='js/utilities.js'></script>
+    <script type="text/javascript" src='behavior.js'></script>
     <script type='text/javascript' src='register.js'></script>
     <script type='text/javascript'>
         //touch event hack

@@ -112,7 +112,7 @@
                 <p>
                     <?php
                     createButtonLink('Idea', 'idea-button', '/', 'green-button');
-                    createButtonLink('Login', 'login-button', 'login.php', 'green-button');1
+                    createButtonLink('Login', 'login-button', 'login.php', 'green-button');
                     ?>
                 </p>
                 <?php

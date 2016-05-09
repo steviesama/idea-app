@@ -115,8 +115,8 @@ function registrationResponse(response) {
         }
 
         if(canSubmit === true && resp['should-register'] === true) {
-            var replaceHTML = "<h1>Trend Logger - (E-Mail Verification)</h1>\n";
-            replaceHTML += "<h4>Your have successfully registered for Trend Logger!</h4>\n";
+            var replaceHTML = "<h1>Idea - (E-Mail Verification)</h1>\n";
+            replaceHTML += "<h4>You have successfully registered for Idea!</h4>\n";
             replaceHTML += "<p>An email verification link has been sent to the E-Mail " +
                     "address you registered with.  Please check your E-Mail and " +
                     "click the link to verify and enable your account.</p>\n";
