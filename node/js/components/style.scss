@@ -1,7 +1,6 @@
 @import "~react-toolbox/lib/base";
 @import "~react-toolbox/lib/app_bar/config";
 @import "~react-toolbox/lib/button/config";
-
 $title-font-size: 1.8 * $unit;
 
 // You need to boost priority more than the minimum since
@@ -13,6 +12,10 @@ $title-font-size: 1.8 * $unit;
     font-size: $title-font-size;
     font-weight: $font-weight-bold;
     position: relative;
+    > small {
+      font-size: 1.8 * $unit; //This is the same as title-font-size, so don't expect it to be smaller
+      font-weight: normal;
+    }
   }
 
   > .button {
@@ -21,4 +24,9 @@ $title-font-size: 1.8 * $unit;
     right: $button-floating-height / 2;
     z-index: $z-index-higher;
   }
+}
+
+// TIP: Best to separate the the content and App Bar into separate components
+.content {
+  padding: $unit;
 }
