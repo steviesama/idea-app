@@ -91,7 +91,7 @@
 // 		if(shouldChangeMode) {
 // 			response += "'true'}";
 // 			shouldChangeMode = false;
-				
+
 // 			io.emit('chat', {
 // 				'name':'<Arduino>',
 // 				'message':'has CHANGED MODES!',
@@ -183,6 +183,7 @@ const app = express();
 const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
+  contentBase: '/build',
   publicPath: config.output.publicPath,
   stats: {
     colors: true
