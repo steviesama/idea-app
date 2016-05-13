@@ -15,8 +15,8 @@
     <meta name="description" content="Idea login page">
 	<link href="style.css" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script type="text/javascript" src="dom-help.js"></script>    
-    <script type="text/javascript" src="register.js"></script>
+    <script src="dom-help.js"></script>    
+    <script src="register.js"></script>
     <!--[if lt IE 9]>
     <script src="html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->

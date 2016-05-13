@@ -1,0 +1,98 @@
+/*var app*/ var express = require('express');//();
+var http = require('http').createServer(app);//.Server(app);
+var io = require('socket.io');//(http);
+io = io.listen(http);
+// var mysql = require('mysql');
+
+// var url = require('url');
+// var url_parts = url.parse(request.url, true);
+// var query = url_parts.query;
+
+// console.log(query);
+
+// var $ = require('jquery');
+
+// var db = mysql.createConnection({
+// 	host:'6dnx.com',
+// 	user:'robert',
+// 	password:'johnson2013',
+// 	database:'trend'
+// });
+
+// db.connect(function(error) {
+// 	if(error) console.log(error);
+// 	else console.log('Successfully connected to 6dnx.com:3306!');
+// });
+
+// db.query('SELECT * from tblUser')
+// .on('result', function(data) {
+// 	console.log(data.user_lastname + ', ' + data.user_firstname + '\n');
+// 	console.log(data);
+// 	console.log('\n\n-----------------------\n\n');
+// });
+
+var users = new Array();
+
+function socketExists(socket) {
+	return users[socket] !== undefined;
+}
+
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
+
+io.on('connection', function(socket) {
+	socket.toString = function() {
+		return this.id;
+	}
+
+	if(socketExists(socket) === false)
+		users[socket] = new Array();
+
+	socket.on('connect-message', function(channel) {
+		this.broadcast.emit('chat', {
+			'name':'<user>',
+			'message':'has CONNECTED!',
+			'channel':channel
+		});
+	});
+
+	socket.on('chat', function(json) {
+		users[socket]['name'] = json.name;
+		users[socket]['channel'] = json.channel;
+
+		console.log('\nusers:\n--------------\n');
+		console.log(users);
+
+		console.log('\nusers[socket]:\n--------------\n');
+		console.log(users[socket]);
+
+		io.emit('chat', json);
+	});
+
+	socket.on('disconnect', function() {
+		if(socketExists(this)) console.log('socket exists in user array!');
+		else console.log('socket doesn\'t exist in user array!');
+
+		if(socketExists(this)) {
+			io.emit('chat', {
+				'name':users[this]['name'],
+				'message':' has DISCONNECTED!',
+				'channel':users[this]['channel']
+			});
+
+			console.log('\ndisconnect message\n--------------\n');
+			console.log({
+				'name':users[this]['name'],
+				'message':' has DISCONNECTED!',
+				'channel':users[this]['channel']
+			});
+
+			delete users[this];
+		} //End if socket exists
+	});
+});
+
+http.listen(8000, function() {
+  console.log('listening on *:8000');
+});

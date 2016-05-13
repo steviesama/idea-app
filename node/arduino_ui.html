@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Arduino UI</title>
+    <meta charset='utf-8'>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 24px Consolas, monospace; width: 400px; margin: auto;}
+      h1 { text-align: center; color: blue; margin-top: 0.3em;}
+      h3 { margin-top: 0.3em; }
+      /*form { background: #000; padding: 3px; height: 40px; position: fixed; bottom: 0; width: 100%; }*/
+      button { font-size: 24px }
+      .state-button { width: 15em; background: lightgray; border: none; padding: 10px; margin-top: 1em;}
+      .state-button:active { background: gray; color: white; }
+      /*form button:active { background: gray; color: white;}*/
+      /*form button[id='next-mode'] { background: blue; color: white; }*/
+      .next-mode-normal { width: 15em; background: blue; color: white; border: none; padding: 10px; margin-top: 1em; }
+      .next-mode-normal:active { background: lightgray; color: blue; }
+      .next-mode-activated { width: 15em; background: lightgray; color: blue; border: none; padding: 10px; margin-top: 1em; }
+
+      .activated { background: green; color: white; }
+      .activated:active { background: blue; }
+    </style>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $.fn.scrollBottom = function() { 
+        return $(document).height() - this.scrollTop() - this.height(); 
+      };
+
+      function encodeHtmlString(htmlString) {
+        return htmlString.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+                 return '&#'+i.charCodeAt(0)+';';
+              });
+      }
+
+      //create a unique channel name
+      var channel = 'global';
+      var isTouchDevice = 'ontouchstart' in document.documentElement;
+
+      //create socket
+      var socket = io('http://node.6dnx.com');
+      //emit socket connect message
+      socket.emit('connect-message', channel);
+
+      function getUsersName() {        
+        var usersName = $('#name').val().trim();
+        if(usersName.length = 0) usersName = '<anonymous>';
+        return usersName;
+      }
+
+      function sendMessage() {
+        var json = {
+          'name': getUsersName(),
+          'message':$('#m').val(),
+          'channel':channel
+        }
+
+        socket.emit('chat', json);
+        $('#m').val('');      
+      };
+
+      function animateButtonPress(button, activatedClass, notActivatedClass) {
+        if(notActivatedClass !== undefined) $(button).removeClass(notActivatedClass);
+        $(button).addClass(activatedClass);
+
+        setTimeout(function() {
+          $(button).removeClass(activatedClass);
+          if(notActivatedClass !== undefined) $(button).addClass(notActivatedClass);
+        }, 500);
+      }
+
+      socket.on('pattern-state', function(patternState) {        
+        $('button:not(#next-mode)').removeClass('activated');
+        $('#' + patternState).addClass('activated');
+      });
+
+      $(document).ready(function() {
+        $('form').submit(function(e) {
+          e.preventDefault();
+        });
+
+        $('button:not(#next-mode)').addClass('state-button');
+        $('#next-mode').addClass('next-mode-normal');
+
+
+        $('#next-mode').click(function() {
+          if(isTouchDevice) animateButtonPress(this, 'next-mode-activated', 'next-mode-normal');
+          socket.emit('change-mode', true);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Arduino UI</h1>
+    <form>
+      <div style='text-align: center'>
+        <h3>Light Pattern Modes</h3>
+        <button id='next-mode'>Next Mode</button><br>
+        <button id='one-after-another'>One After Another</button><br>
+        <button id='one-at-a-time'>One at a Time</button><br>
+        <button id='ping-pong'>Ping Pong</button><br>
+        <button id='random-led'>Random LED</button><br>
+        <button id='marquee'>Marquee</button><br>
+        <button id='binary-count'>Binary Count</button>
+      </div>
+    </form>
+  </body>
+</html>
