@@ -1,8 +1,8 @@
 {
-  "name": "idea-app",
+  "name": "idea-composer",
   "version": "0.0.4",
   "description": "Idea Composer Application.",
-  "author": "steviesama (6dnx) (http://github.com/idea-app)",
+  "author": "steviesama (6dnx) (http://github.com/idea-composer)",
   "contributors": [
     {
       "name": "C.S. Taylor, Jr.",
@@ -11,11 +11,11 @@
     }
   ],
   "bugs": {
-    "url": "https://github.com/idea-app/idea-app/issues",
+    "url": "https://github.com/idea-composer/idea-composer/issues",
     "email": "steviesama@gmail.com"
   },
   "keywords": [
-    "idea-app"
+    "idea-composer"
   ],
   "devDependencies": {
     "autoprefixer": "6.3.6",
@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "node ./idea",
-    "build": "cross-env NODE_ENV=production UV_THREADPOOL_SIZE=100 webpack --config ./webpack.config && cp ./index.html build ",
+    "build": "npm version patch && cross-env NODE_ENV=production UV_THREADPOOL_SIZE=100 webpack --config ./webpack.config && cp ./index.html build ",
     "deploy": "gh-pages -d build"
   }
 }
