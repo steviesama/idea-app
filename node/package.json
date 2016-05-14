@@ -1,32 +1,22 @@
 {
-  "name": "react-toolbox-example",
-  "version": "0.11.4",
-  "description": "A set of complementary tools to ReactJS.",
-  "author": "React Toolbox Team (http://github.com/react-toolbox)",
+  "name": "idea-app",
+  "version": "0.0.4",
+  "description": "Idea Composer Application.",
+  "author": "steviesama (6dnx) (http://github.com/idea-app)",
   "contributors": [
     {
-      "name": "Javi Jimenez Villar",
-      "url": "http://soyjavi.com/",
-      "email": "javi.jimenez.villar@gmail.com"
-    },
-    {
-      "name": "Javi Velasco Arjona",
-      "url": "http://javivelasco.com/",
-      "email": "javier.velasco86@gmail.com"
+      "name": "C.S. Taylor, Jr.",
+      "url": "http://cstaylorjr.com/",
+      "email": "steviesama@gmail.com"
     }
   ],
   "bugs": {
-    "url": "https://github.com/react-toolbox/react-toolbox/issues",
-    "email": "issues@react-toolbox.com"
+    "url": "https://github.com/idea-app/idea-app/issues",
+    "email": "steviesama@gmail.com"
   },
   "keywords": [
-    "react",
-    "react-component",
-    "material design",
-    "toolbox",
-    "components"
+    "idea-app"
   ],
-  "license": "MIT",
   "devDependencies": {
     "autoprefixer": "6.3.6",
     "babel-core": "6.7.7",
