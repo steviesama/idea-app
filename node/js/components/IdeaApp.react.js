@@ -13,7 +13,7 @@ class IdeaApp extends React.Component {
 		return (
 			<div>
 				<AppBar className={style.appbar} flat>
-					<h1 className={style.title}>Idea App <small>v0.0.1</small></h1>
+					<h1>Idea App <small>{VERSION}</small></h1>
 					<Button className={style.button} icon='web' accent floating/>
 				</AppBar>
 				<section className={style.content}>
