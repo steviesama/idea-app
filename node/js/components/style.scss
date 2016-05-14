@@ -8,7 +8,7 @@ $title-font-size: 1.8 * $unit;
 // ensure the order. You can either set a wrapper or target
 // React Toolbox data attributes to boost
 .appbar {
-  > .title {
+  > h1 {
     font-size: $title-font-size;
     font-weight: $font-weight-bold;
     position: relative;
