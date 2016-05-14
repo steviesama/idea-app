@@ -1,7 +1,11 @@
+const pkg = require('./package');
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const childProcess = require('child_process');
+
+const version = childProcess.execSync('git rev-list HEAD --count').toString();
 
 module.exports = {
   context: __dirname,
@@ -46,7 +50,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      'VERSION': JSON.stringify(`v0.0.${version}`)
     })
   ]
 };
