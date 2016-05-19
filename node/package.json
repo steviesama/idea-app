@@ -52,5 +52,8 @@
     "start": "node ./idea",
     "build": "npm version patch && cross-env NODE_ENV=production UV_THREADPOOL_SIZE=100 webpack --config ./webpack.config && cp ./index.html build ",
     "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "underscore": "^1.8.3"
   }
 }
