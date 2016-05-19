@@ -54,6 +54,7 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "mysql": "^2.10.2",
     "underscore": "^1.8.3"
   }
 }
