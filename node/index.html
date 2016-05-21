@@ -13,7 +13,18 @@
     <meta http-equiv="cleartype" content="on">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="react-toolbox.css">
+    <link rel="stylesheet" type="text/css" href="react-toolbox.css">
+    <link rel="stylesheet" type="text/css" href="Draft.css">    
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script type="text/javascript">
+      var socket;
+
+      function encodeHtmlString(htmlString) {
+        return htmlString.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+                 return '&#'+i.charCodeAt(0)+';';
+              });
+      }
+    </script>
   </head>
   <body>
     <div id="idea-app"></div>

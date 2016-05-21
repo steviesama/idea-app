@@ -1,4 +1,4 @@
-// // var io = require('socket.io');
+//var io = require('socket.io');
 // // var express = require('express');
 
 // // var app = express(),
@@ -174,13 +174,35 @@
 // http.listen(8001, function() {
 //   console.log('listening on *:8001');
 // });
+
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const config = require('./webpack.config');
+var mysql = require('mysql');
 
 const app = express();
+const http = require('http').createServer(app);
+var io = require('socket.io')(http);
+
 const compiler = webpack(config);
+
+var db = mysql.createConnection({
+ host:'6dnx.com',
+ user:'robert',
+ password:'johnson2013',
+ database:'trend'
+});
+
+db.connect(function(error) {
+ if(error) console.log(error);
+ else console.log('Successfully connected to 6dnx.com:3306!');
+});
+
+io.on('connect', (socket) => {
+  socket.emit('connection-received', 'Connection Received!!!');
+  console.log(`Connection Received: ${socket.handshake.address}`);
+});
 
 app.use(require('webpack-dev-middleware')(compiler, {
   contentBase: '/build',
@@ -190,13 +212,14 @@ app.use(require('webpack-dev-middleware')(compiler, {
   }
 }));
 
+app.use(express.static('.'));
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './index.html'));
 });
 
-app.listen(8001, 'localhost', (err) => {
+http.listen(8001, 'localhost', (err) => {
   if (err) {
     console.log(err);
     return;

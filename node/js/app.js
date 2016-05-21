@@ -4,6 +4,6 @@ var ReactDOM = require('react-dom');
 var IdeaApp = require('./components/IdeaApp.react');
 
 ReactDOM.render(
-	<IdeaApp />,
+	<IdeaApp/>,
 	document.getElementById('idea-app')
 );
